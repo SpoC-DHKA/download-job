@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 data:
-  run.sh: {{ .Values.Download.Script }}
+  run.sh: |
+{{ .Values.Download.Script | indent 4 }}

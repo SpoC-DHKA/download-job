@@ -1,12 +1,23 @@
 # Default values
 
 Download:
-  DestionationPath: /data/common-voice
-  Url: https://voice-prod-bundler-ee1969a6ce8178826482b88e843c335139bd3fb4.s3.amazonaws.com/cv-corpus-1/en.tar.gz
-  TarName: en.tar.gz
+  DestionationPath: /data/shared-task/OLD-DNN
+  Script: |
+    #!/bin/sh
+    cd /data/shared-task/OLD-DNN
+    wget https://raw.githubusercontent.com/Snow-White-Group/The-CSU-K-DNN-Based-System-for-the-2nd-Edition-Spoken-CALL-Shared-Task/master/Dev3/Data/vec_st2_test_x.csv  --no-check-certificate
+    wget https://raw.githubusercontent.com/Snow-White-Group/The-CSU-K-DNN-Based-System-for-the-2nd-Edition-Spoken-CALL-Shared-Task/master/Dev3/Data/vec_st2_test_y.csv  --no-check-certificate
+    wget https://raw.githubusercontent.com/Snow-White-Group/The-CSU-K-DNN-Based-System-for-the-2nd-Edition-Spoken-CALL-Shared-Task/master/Dev3/Data/vec_test_x.csv  --no-check-certificate
+    wget https://raw.githubusercontent.com/Snow-White-Group/The-CSU-K-DNN-Based-System-for-the-2nd-Edition-Spoken-CALL-Shared-Task/master/Dev3/Data/vec_test_y.csv  --no-check-certificate
+    wget https://raw.githubusercontent.com/Snow-White-Group/The-CSU-K-DNN-Based-System-for-the-2nd-Edition-Spoken-CALL-Shared-Task/master/Dev3/Data/vec_train_x.csv  --no-check-certificate
+    wget https://raw.githubusercontent.com/Snow-White-Group/The-CSU-K-DNN-Based-System-for-the-2nd-Edition-Spoken-CALL-Shared-Task/master/Dev3/Data/vec_train_y.csv --no-check-certificate
+    pwd
+    ls
 
 Persistence:
-  UseExsistingClame: false
-  ClameName: test
+  UseExsistingClame: true 
+  ClameName: shared-task-pvc
   Size: 8Gi
   StorageClass: glusterfs
+
+Debug: false

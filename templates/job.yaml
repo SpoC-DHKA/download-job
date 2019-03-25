@@ -10,8 +10,13 @@ spec:
       - name: downloader
         image: mwendler/wget
         tag: latest
+{{ if .Values.Debug}}
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
+{{ else }}
         command: ["/bin/sh"]
         args: ["/etc/config/run.sh"]
+{{ end }}
         volumeMounts:
         - name: data
           mountPath: {{ .Values.Download.DestionationPath }}
