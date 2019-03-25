@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: downloader
+        image: mwendler/wget
+        tag: latest
+        command: ["/bin/sh"]
+        args: ["/etc/config/run.sh"]
+        volumeMounts:
+        - mountPath: /data/common-voice
+          name: common-voice
+        - name: config-volume
+          mountPath: /etc/config
+      restartPolicy: OnFailure
+      volumes:
+        - name: common-voice
+          persistentVolumeClaim:
+            claimName: common-voice-pvc
+        - name: config-volume
+          configMap:
+            name: downloadjob-config
+            defaultMode: 0744
