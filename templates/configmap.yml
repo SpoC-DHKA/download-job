@@ -3,7 +3,4 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 data:
-  run.sh: |-
-    cd {{ .Values.Download.DestionationPath}}
-    wget {{ .Values.Download.Url}}  --no-check-certificate
-    tar -xzf -v {{ .Values.Download.Url}}
+  run.sh: {{ .Values.Download.Script }}
