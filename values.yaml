@@ -1,1 +1,12 @@
 # Default values
+
+Download:
+  DestionationPath: /data/common-voice
+  Url: https://voice-prod-bundler-ee1969a6ce8178826482b88e843c335139bd3fb4.s3.amazonaws.com/cv-corpus-1/en.tar.gz
+  TarName: en.tar.gz
+
+Persistence:
+  UseExsistingClame: false
+  ClameName: test
+  Size: 8Gi
+  StorageClass: glusterfs

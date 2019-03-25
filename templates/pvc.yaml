@@ -1,0 +1,17 @@
+{{ if eq .Values.Persistence.UseExsistingClame false}}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ .Values.Persistence.ClameName }}
+  annotations:
+    "helm.sh/resource-policy": keep 
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: {{ .Values.Persistence.Size }}
+  storageClassName: {{ .Values.Persistence.StorageClass }}
+{{ end }}

@@ -1,7 +1,7 @@
-# K8s Job to download common-voice dataset
+# K8s Job insert trainingsdata into our DHBW Cluster
 
 
 ```console
-$ helm install . --name downloadjob
+$ helm install . --name downloadjob -f values.yaml
 ```
 

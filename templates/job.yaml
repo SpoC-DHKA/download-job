@@ -13,16 +13,16 @@ spec:
         command: ["/bin/sh"]
         args: ["/etc/config/run.sh"]
         volumeMounts:
-        - mountPath: /data/common-voice
-          name: common-voice
+        - name: data
+          mountPath: {{ .Values.Download.DestionationPath }}
         - name: config-volume
           mountPath: /etc/config
       restartPolicy: OnFailure
       volumes:
-        - name: common-voice
+        - name: data
           persistentVolumeClaim:
-            claimName: common-voice-pvc
+            claimName: {{ .Values.Persistence.ClameName}}
         - name: config-volume
           configMap:
-            name: downloadjob-config
+            name: {{ .Release.Name }}-configmap
             defaultMode: 0744
